@@ -353,7 +353,8 @@ class TradingBot:
         optimal_sell_price = order_book.best_ask - tick_size
         
         # Check price deviation limits
-        min_price = self.initial_price * (1 + self.config.max_price_deviation)
+        max_deviation = Decimal(str(self.config.max_price_deviation))
+        min_price = self.initial_price * (Decimal('1') + max_deviation)
         if optimal_sell_price > min_price:
             optimal_sell_price = min_price
         
