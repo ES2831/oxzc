@@ -311,7 +311,8 @@ class TradingBot:
         optimal_buy_price = order_book.best_bid + tick_size
         
         # Check price deviation limits
-        max_price = self.initial_price * (1 - self.config.max_price_deviation)
+        max_deviation = Decimal(str(self.config.max_price_deviation))
+        max_price = self.initial_price * (Decimal('1') - max_deviation)
         if optimal_buy_price < max_price:
             optimal_buy_price = max_price
         
